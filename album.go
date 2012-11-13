@@ -53,3 +53,21 @@ func (a *albumMethods) GetInfo(artist, album string, autocorrect bool, username 
 	}
 	return &info, nil
 }
+
+func (a *albumMethods) GetShouts(artist, album string, autocorrect bool, page int) ([]Shout, error) {
+	wrapper := struct {
+		Shouts []Shout `xml:"shouts>shout"`
+	}{}
+	query := map[string]string{
+		"method":      a.Method("getshouts"),
+		"artist":      artist,
+		"album":       album,
+		"autocorrect": boolToString(autocorrect),
+		"page":        string(page),
+	}
+	err := a.Client.Execute(query, &wrapper)
+	if err != nil {
+		return nil, err
+	}
+	return wrapper.Shouts, nil
+}

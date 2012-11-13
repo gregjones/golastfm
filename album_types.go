@@ -48,3 +48,9 @@ type BuyLinks struct {
 	Physicals []affiliation `xml:"physicals>affiliation"`
 	Downloads []affiliation `xml:"downloads>affiliation"`
 }
+
+type Shout struct {
+	Body   string `xml:"body"`
+	Author string `xml:"author"`
+	Date   string `xml:"date"`
+}
