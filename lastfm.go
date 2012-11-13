@@ -1,7 +1,7 @@
 package lastfm
 
 import (
-	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"net/http"
 )
@@ -25,14 +25,13 @@ func NewClient(APIKey, APISecret string) *Client {
 
 func (c *Client) Execute(query map[string]string, v interface{}) error {
 	query["api_key"] = c.APIKey
-	query["format"] = "json"
 	url := fmt.Sprintf("%s?%s", c.Host, Urlencode(query))
 	resp, err := c.Get(url)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
-	d := json.NewDecoder(resp.Body)
+	d := xml.NewDecoder(resp.Body)
 	err = d.Decode(v)
 	return err
 }

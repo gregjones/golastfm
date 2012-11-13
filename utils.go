@@ -16,3 +16,11 @@ func Urlencode(data map[string]string) string {
 	s := buf.String()
 	return s[0 : len(s)-1]
 }
+
+func boolToString(b bool) string {
+	var boolString = "0"
+	if b {
+		boolString = "1"
+	}
+	return boolString
+}
