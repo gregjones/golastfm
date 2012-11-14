@@ -54,3 +54,9 @@ type Shout struct {
 	Author string `xml:"author"`
 	Date   string `xml:"date"`
 }
+
+type Tag struct {
+	Name  string `xml:"name"`
+	Count int    `xml:"count"`
+	Url   string `xml:"url"`
+}
