@@ -75,6 +75,7 @@ type Tag struct {
 // AlbumSearchResults contains a list of AlbumInfos, along with the totals and paging information for the call
 // 
 // The AlbumInfo values contained won't be complete. Specifically, they don't include track listings.
+// To get the full version, call GetInfo with the MBID
 type AlbumSearchResults struct {
 	TotalResults int         `xml:"totalResults"`
 	StartIndex   int         `xml:"startIndex"`
