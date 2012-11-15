@@ -39,7 +39,7 @@ func NewClient(APIKey, APISecret string) *Client {
 
 func (c *Client) Execute(query map[string]string, v interface{}) error {
 	query["api_key"] = c.APIKey
-	url := fmt.Sprintf("%s?%s", c.Host, Urlencode(query))
+	url := fmt.Sprintf("%s?%s", c.Host, urlencode(query))
 	resp, err := c.Get(url)
 
 	defer resp.Body.Close()
@@ -71,6 +71,10 @@ func (c *Client) Album() *AlbumMethods {
 	return &AlbumMethods{Client: c}
 }
 
-// func init() {
-// 	DefaultHttpClient = 
-// }
+func (c *Client) Track() *TrackMethods {
+	return &TrackMethods{Client: c}
+}
+
+func (c *Client) Artist() *ArtistMethods {
+	return &ArtistMethods{Client: c}
+}

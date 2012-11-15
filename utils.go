@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-func Urlencode(data map[string]string) string {
+func urlencode(data map[string]string) string {
 	var buf bytes.Buffer
 	for k, v := range data {
 		buf.WriteString(url.QueryEscape(k))
