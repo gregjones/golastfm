@@ -10,19 +10,21 @@ import (
 // 
 // See http://www.last.fm/api/show/album.search
 type AlbumInfo struct {
-	XMLName     xml.Name     `xml:"album"`
-	Name        string       `xml:"name"`
-	Artist      string       `xml:"artist"`
-	ID          string       `xml:"id"`
-	MBID        string       `xml:"mbid"`
-	Url         string       `xml:"url"`
-	ReleaseDate string       `xml:"releaseDate"`
-	Images      []Image      `xml:"image"`
-	Listeners   string       `xml:"listeners"`
-	Playcount   string       `xml:"playcount"`
-	Tracks      []AlbumTrack `xml:"tracks>track"`
-	TopTags     []Tag        `xml:"toptags>tag"`
-	Wiki        Wiki         `xml:"wiki"`
+	XMLName     xml.Name `xml:"album"`
+	Name        string   `xml:"name"`
+	Artist      string   `xml:"artist"`
+	ID          string   `xml:"id"`
+	MBID        string   `xml:"mbid"`
+	Url         string   `xml:"url"`
+	ReleaseDate string   `xml:"releaseDate"`
+	Images      []Image  `xml:"image"`
+	Listeners   int      `xml:"listeners"`
+	Playcount   int      `xml:"playcount"`
+	// Present only (but not always) if a username was provided
+	Userplaycount int          `xml:"userplaycount"`
+	Tracks        []AlbumTrack `xml:"tracks>track"`
+	TopTags       []Tag        `xml:"toptags>tag"`
+	Wiki          Wiki         `xml:"wiki"`
 }
 
 type AlbumTrack struct {
