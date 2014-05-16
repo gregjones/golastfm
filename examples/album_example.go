@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/gregjones/golastfm/lastfm"
+	"github.com/gregjones/httpcache"
+	"github.com/gregjones/httpcache/diskcache"
 )
 
 var (
@@ -16,7 +18,10 @@ func main() {
 	flag.Parse()
 	fmt.Println("Example album methods")
 	apiKey := "d0a8c6b594b43669503d9f51aaabea22"
+	dc := diskcache.New("/tmp")
+	t := httpcache.NewTransport(dc)
 	c := lastfm.NewClient(apiKey, "")
+	c.Transport = t
 	album, err := c.Album().GetInfo(*artist, *albumName, true, *username, "en")
 	if err != nil {
 		fmt.Println("There was an error")
